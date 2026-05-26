@@ -20,13 +20,14 @@ A React + Vite front end for the Products REST API (Flask / PostgreSQL).
 ```
 src/
 ├── components/
-│   └── Navbar.jsx        ← shared navigation bar
+│   ├── Navbar.jsx        ← shared navigation bar
+│   └── ChatWidget.jsx    ← n8n chat bubble widget
 ├── pages/
 │   └── ProductsPage.jsx  ← main product catalog page
 ├── services/
 │   └── products.js       ← all API fetch logic
 ├── App.jsx               ← root component, wires everything together
-├── App.css               ← global styles and pink theme
+├── App.css               ← global styles, pink theme, chat widget theme
 ├── index.css             ← base reset
 └── main.jsx              ← React entry point
 ```
@@ -116,6 +117,37 @@ src/
 ### Step 10 — Document the Project (`front-end-plan.md`)
 - Created `front-end-plan.md` in the project root.
 - Documented the full plan including tech stack, folder structure, and a step-by-step breakdown of every change made during the build.
+
+---
+
+### Step 11 — Add n8n Chat Widget (`components/ChatWidget.jsx`)
+- Created `ChatWidget.jsx` which dynamically imports the `@n8n/chat` bundle from jsDelivr CDN.
+- Configured `createChat()` with the n8n webhook URL: `https://automations.pathway4.click/webhook/a03216de-13ac-4dd2-9841-ac7c3e510625/chat`
+- Set mode to `window` with a welcome screen and default English messages.
+- Added the `@n8n/chat` stylesheet link to `index.html`.
+- Registered `<ChatWidget />` in `App.jsx` so the bubble appears on every page.
+
+---
+
+### Step 12 — Apply Pink Theme to Chat Widget
+- Added CSS variable overrides in `App.css` under `:root` to theme the n8n chat widget:
+  - Toggle bubble: hot pink `#e91e8c`
+  - Header background: hot pink, text: dark pink `#3b0a20`
+  - Bot messages: soft pink background, dark pink text
+  - User messages: light pink `#f48fb1` background
+  - Input field: soft pink background with pink border and send button
+
+---
+
+### Step 13 — Remove White Text from Chat Widget
+- Replaced all `#ffffff` (white) text colors in the chat CSS variables with dark pink `#3b0a20`.
+- Changed user message background from hot pink to lighter `#f48fb1` to maintain readability without white text.
+- Updated send button icon color and toggle icon color to dark pink.
+
+---
+
+### Step 14 — Light Purple User Message Text
+- Updated `--chat--message--user--color` to light purple `#c084fc` for user messages in the chat widget.
 
 ---
 
